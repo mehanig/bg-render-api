@@ -35,10 +35,6 @@ import {
     ServiceKeyToJSON,
 } from '../models';
 
-export interface GetRequest {
-    id?: number;
-}
-
 export interface RemoveQueueItemsRequest {
     renderQueueItemRemovePayload?: RenderQueueItemRemovePayload;
 }
@@ -89,34 +85,6 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async getRaw(requestParameters: GetRequest): Promise<runtime.ApiResponse<AeRendererState>> {
-        const queryParameters: runtime.HTTPQuery = {};
-
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/api/model`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        });
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AeRendererStateFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async get(requestParameters: GetRequest): Promise<AeRendererState> {
-        const response = await this.getRaw(requestParameters);
-        return await response.value();
-    }
-
-    /**
-     */
     async getMirrorServiceConfigRaw(): Promise<runtime.ApiResponse<MirrorService>> {
         const queryParameters: runtime.HTTPQuery = {};
 
@@ -136,6 +104,30 @@ export class APIApi extends runtime.BaseAPI {
      */
     async getMirrorServiceConfig(): Promise<MirrorService> {
         const response = await this.getMirrorServiceConfigRaw();
+        return await response.value();
+    }
+
+    /**
+     */
+    async getModelRaw(): Promise<runtime.ApiResponse<AeRendererState>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/api/model`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AeRendererStateFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getModel(): Promise<AeRendererState> {
+        const response = await this.getModelRaw();
         return await response.value();
     }
 
