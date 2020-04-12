@@ -35,23 +35,56 @@ import {
     ServiceKeyToJSON,
 } from '../models';
 
+export interface AddThreadRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface GetMirrorServiceConfigRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface GetModelRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface GetServiceKeyRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface GreetRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface KillAppRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface KillAppPostRequest {
+    xBGRMAXVersion?: string;
+}
+
 export interface RemoveQueueItemsRequest {
+    xBGRMAXVersion?: string;
     renderQueueItemRemovePayload?: RenderQueueItemRemovePayload;
 }
 
 export interface RunAeRequest {
+    xBGRMAXVersion?: string;
     bGRendererInput?: BGRendererInput;
 }
 
 export interface ScheduleQueueItemsRequest {
+    xBGRMAXVersion?: string;
     bGRendererInput?: BGRendererInput;
 }
 
 export interface SetCPULimitRequest {
+    xBGRMAXVersion?: string;
     cPUStats?: CPUStats;
 }
 
 export interface SetMirrorServiceConfigRequest {
+    xBGRMAXVersion?: string;
     mirrorService?: MirrorService;
 }
 
@@ -62,10 +95,14 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async addThreadRaw(): Promise<runtime.ApiResponse<void>> {
+    async addThreadRaw(requestParameters: AddThreadRequest): Promise<runtime.ApiResponse<void>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/addThread`,
@@ -79,16 +116,20 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async addThread(): Promise<void> {
-        await this.addThreadRaw();
+    async addThread(requestParameters: AddThreadRequest): Promise<void> {
+        await this.addThreadRaw(requestParameters);
     }
 
     /**
      */
-    async getMirrorServiceConfigRaw(): Promise<runtime.ApiResponse<MirrorService>> {
+    async getMirrorServiceConfigRaw(requestParameters: GetMirrorServiceConfigRequest): Promise<runtime.ApiResponse<MirrorService>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/mirrorConfig`,
@@ -102,17 +143,21 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async getMirrorServiceConfig(): Promise<MirrorService> {
-        const response = await this.getMirrorServiceConfigRaw();
+    async getMirrorServiceConfig(requestParameters: GetMirrorServiceConfigRequest): Promise<MirrorService> {
+        const response = await this.getMirrorServiceConfigRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async getModelRaw(): Promise<runtime.ApiResponse<AeRendererState>> {
+    async getModelRaw(requestParameters: GetModelRequest): Promise<runtime.ApiResponse<AeRendererState>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/model`,
@@ -126,17 +171,21 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async getModel(): Promise<AeRendererState> {
-        const response = await this.getModelRaw();
+    async getModel(requestParameters: GetModelRequest): Promise<AeRendererState> {
+        const response = await this.getModelRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async getServiceKeyRaw(): Promise<runtime.ApiResponse<ServiceKey>> {
+    async getServiceKeyRaw(requestParameters: GetServiceKeyRequest): Promise<runtime.ApiResponse<ServiceKey>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/serviceKey`,
@@ -150,17 +199,21 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async getServiceKey(): Promise<ServiceKey> {
-        const response = await this.getServiceKeyRaw();
+    async getServiceKey(requestParameters: GetServiceKeyRequest): Promise<ServiceKey> {
+        const response = await this.getServiceKeyRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async greetRaw(): Promise<runtime.ApiResponse<string>> {
+    async greetRaw(requestParameters: GreetRequest): Promise<runtime.ApiResponse<string>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/`,
@@ -174,17 +227,21 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async greet(): Promise<string> {
-        const response = await this.greetRaw();
+    async greet(requestParameters: GreetRequest): Promise<string> {
+        const response = await this.greetRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async killAppRaw(): Promise<runtime.ApiResponse<void>> {
+    async killAppRaw(requestParameters: KillAppRequest): Promise<runtime.ApiResponse<void>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/killApp`,
@@ -198,16 +255,20 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async killApp(): Promise<void> {
-        await this.killAppRaw();
+    async killApp(requestParameters: KillAppRequest): Promise<void> {
+        await this.killAppRaw(requestParameters);
     }
 
     /**
      */
-    async killApp_1Raw(): Promise<runtime.ApiResponse<void>> {
+    async killAppPostRaw(requestParameters: KillAppPostRequest): Promise<runtime.ApiResponse<void>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/killApp`,
@@ -221,8 +282,8 @@ export class APIApi extends runtime.BaseAPI {
 
     /**
      */
-    async killApp_1(): Promise<void> {
-        await this.killApp_1Raw();
+    async killAppPost(requestParameters: KillAppPostRequest): Promise<void> {
+        await this.killAppPostRaw(requestParameters);
     }
 
     /**
@@ -233,6 +294,10 @@ export class APIApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/remove`,
@@ -260,6 +325,10 @@ export class APIApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
         const response = await this.request({
             path: `/api/run`,
             method: 'POST',
@@ -285,6 +354,10 @@ export class APIApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/schedule`,
@@ -312,6 +385,10 @@ export class APIApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
         const response = await this.request({
             path: `/api/cpulimit`,
             method: 'POST',
@@ -337,6 +414,10 @@ export class APIApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
 
         const response = await this.request({
             path: `/api/mirrorConfig`,
