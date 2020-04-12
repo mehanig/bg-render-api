@@ -43,8 +43,8 @@ export function MirrorServiceFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'isActive': !exists(json, 'IsActive') ? undefined : json['IsActive'],
-        'serverUrl': !exists(json, 'ServerUrl') ? undefined : json['ServerUrl'],
+        'isActive': !exists(json, 'isActive') ? undefined : json['isActive'],
+        'serverUrl': !exists(json, 'serverUrl') ? undefined : json['serverUrl'],
     };
 }
 
@@ -57,8 +57,8 @@ export function MirrorServiceToJSON(value?: MirrorService | null): any {
     }
     return {
         
-        'IsActive': value.isActive,
-        'ServerUrl': value.serverUrl,
+        'isActive': value.isActive,
+        'serverUrl': value.serverUrl,
     };
 }
 

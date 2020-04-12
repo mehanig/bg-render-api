@@ -43,8 +43,8 @@ export function CPUStatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'percents': !exists(json, 'Percents') ? undefined : json['Percents'],
-        'limit': !exists(json, 'Limit') ? undefined : json['Limit'],
+        'percents': !exists(json, 'percents') ? undefined : json['percents'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
     };
 }
 
@@ -57,8 +57,8 @@ export function CPUStatsToJSON(value?: CPUStats | null): any {
     }
     return {
         
-        'Percents': value.percents,
-        'Limit': value.limit,
+        'percents': value.percents,
+        'limit': value.limit,
     };
 }
 

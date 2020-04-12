@@ -72,11 +72,11 @@ export function PostRenderFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'type': !exists(json, 'Type') ? undefined : json['Type'],
-        'state': !exists(json, 'State') ? undefined : PostRenderStateFromJSON(json['State']),
-        'progress': !exists(json, 'Progress') ? undefined : json['Progress'],
-        'args': !exists(json, 'Args') ? undefined : json['Args'],
-        'settings': !exists(json, 'Settings') ? undefined : JsonElementFromJSON(json['Settings']),
+        'type': !exists(json, 'type') ? undefined : json['type'],
+        'state': !exists(json, 'state') ? undefined : PostRenderStateFromJSON(json['state']),
+        'progress': !exists(json, 'progress') ? undefined : json['progress'],
+        'args': !exists(json, 'args') ? undefined : json['args'],
+        'settings': !exists(json, 'settings') ? undefined : JsonElementFromJSON(json['settings']),
     };
 }
 
@@ -89,11 +89,11 @@ export function PostRenderToJSON(value?: PostRender | null): any {
     }
     return {
         
-        'Type': value.type,
-        'State': PostRenderStateToJSON(value.state),
-        'Progress': value.progress,
-        'Args': value.args,
-        'Settings': JsonElementToJSON(value.settings),
+        'type': value.type,
+        'state': PostRenderStateToJSON(value.state),
+        'progress': value.progress,
+        'args': value.args,
+        'settings': JsonElementToJSON(value.settings),
     };
 }
 

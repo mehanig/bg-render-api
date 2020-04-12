@@ -43,8 +43,8 @@ export function ServiceKeyFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'id': !exists(json, 'Id') ? undefined : json['Id'],
-        'key': !exists(json, 'Key') ? undefined : json['Key'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
+        'key': !exists(json, 'key') ? undefined : json['key'],
     };
 }
 
@@ -57,8 +57,8 @@ export function ServiceKeyToJSON(value?: ServiceKey | null): any {
     }
     return {
         
-        'Id': value.id,
-        'Key': value.key,
+        'id': value.id,
+        'key': value.key,
     };
 }
 

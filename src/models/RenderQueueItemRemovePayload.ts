@@ -31,7 +31,7 @@ export interface RenderQueueItemRemovePayload {
      * @type {RenderQueueItemRemoveOperation}
      * @memberof RenderQueueItemRemovePayload
      */
-    payload?: RenderQueueItemRemoveOperation;
+    renderQueueItemRemoveOperation?: RenderQueueItemRemoveOperation;
 }
 
 export function RenderQueueItemRemovePayloadFromJSON(json: any): RenderQueueItemRemovePayload {
@@ -44,7 +44,7 @@ export function RenderQueueItemRemovePayloadFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'payload': !exists(json, 'payload') ? undefined : RenderQueueItemRemoveOperationFromJSON(json['payload']),
+        'renderQueueItemRemoveOperation': !exists(json, 'renderQueueItemRemoveOperation') ? undefined : RenderQueueItemRemoveOperationFromJSON(json['renderQueueItemRemoveOperation']),
     };
 }
 
@@ -57,7 +57,7 @@ export function RenderQueueItemRemovePayloadToJSON(value?: RenderQueueItemRemove
     }
     return {
         
-        'payload': RenderQueueItemRemoveOperationToJSON(value.payload),
+        'renderQueueItemRemoveOperation': RenderQueueItemRemoveOperationToJSON(value.renderQueueItemRemoveOperation),
     };
 }
 

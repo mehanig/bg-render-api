@@ -110,16 +110,16 @@ export function AeRendererStateFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'id': !exists(json, 'Id') ? undefined : json['Id'],
-        'settings': !exists(json, 'Settings') ? undefined : json['Settings'],
-        'errorMessage': !exists(json, 'ErrorMessage') ? undefined : json['ErrorMessage'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
+        'settings': !exists(json, 'settings') ? undefined : json['settings'],
+        'errorMessage': !exists(json, 'errorMessage') ? undefined : json['errorMessage'],
         'isDone': !exists(json, 'isDone') ? undefined : json['isDone'],
-        'frameRate': !exists(json, 'FrameRate') ? undefined : json['FrameRate'],
-        'jobs': !exists(json, 'Jobs') ? undefined : (json['Jobs'] === null ? null : (json['Jobs'] as Array<any>).map(JobFromJSON)),
-        'queue': !exists(json, 'Queue') ? undefined : (json['Queue'] === null ? null : (json['Queue'] as Array<any>).map(RenderQueueItemFromJSON)),
-        'scheduledQueueItems': !exists(json, 'ScheduledQueueItems') ? undefined : json['ScheduledQueueItems'],
-        'renderCPUStats': !exists(json, 'RenderCPUStats') ? undefined : CPUStatsFromJSON(json['RenderCPUStats']),
-        'pause': !exists(json, 'Pause') ? undefined : PauseStateFromJSON(json['Pause']),
+        'frameRate': !exists(json, 'frameRate') ? undefined : json['frameRate'],
+        'jobs': !exists(json, 'jobs') ? undefined : (json['jobs'] === null ? null : (json['jobs'] as Array<any>).map(JobFromJSON)),
+        'queue': !exists(json, 'queue') ? undefined : (json['queue'] === null ? null : (json['queue'] as Array<any>).map(RenderQueueItemFromJSON)),
+        'scheduledQueueItems': !exists(json, 'scheduledQueueItems') ? undefined : json['scheduledQueueItems'],
+        'renderCPUStats': !exists(json, 'renderCPUStats') ? undefined : CPUStatsFromJSON(json['renderCPUStats']),
+        'pause': !exists(json, 'pause') ? undefined : PauseStateFromJSON(json['pause']),
     };
 }
 
@@ -132,16 +132,16 @@ export function AeRendererStateToJSON(value?: AeRendererState | null): any {
     }
     return {
         
-        'Id': value.id,
-        'Settings': value.settings,
-        'ErrorMessage': value.errorMessage,
+        'id': value.id,
+        'settings': value.settings,
+        'errorMessage': value.errorMessage,
         'isDone': value.isDone,
-        'FrameRate': value.frameRate,
-        'Jobs': value.jobs === undefined ? undefined : (value.jobs === null ? null : (value.jobs as Array<any>).map(JobToJSON)),
-        'Queue': value.queue === undefined ? undefined : (value.queue === null ? null : (value.queue as Array<any>).map(RenderQueueItemToJSON)),
-        'ScheduledQueueItems': value.scheduledQueueItems,
-        'RenderCPUStats': CPUStatsToJSON(value.renderCPUStats),
-        'Pause': PauseStateToJSON(value.pause),
+        'frameRate': value.frameRate,
+        'jobs': value.jobs === undefined ? undefined : (value.jobs === null ? null : (value.jobs as Array<any>).map(JobToJSON)),
+        'queue': value.queue === undefined ? undefined : (value.queue === null ? null : (value.queue as Array<any>).map(RenderQueueItemToJSON)),
+        'scheduledQueueItems': value.scheduledQueueItems,
+        'renderCPUStats': CPUStatsToJSON(value.renderCPUStats),
+        'pause': PauseStateToJSON(value.pause),
     };
 }
 

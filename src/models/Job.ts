@@ -91,16 +91,16 @@ export function JobFromJSONTyped(json: any, ignoreDiscriminator: boolean): Job {
     }
     return {
         
-        'id': !exists(json, 'Id') ? undefined : json['Id'],
-        'project': !exists(json, 'Project') ? undefined : json['Project'],
-        'path': !exists(json, 'Path') ? undefined : json['Path'],
-        'frame': !exists(json, 'Frame') ? undefined : json['Frame'],
-        'parentId': !exists(json, 'ParentId') ? undefined : json['ParentId'],
-        'isDone': !exists(json, 'IsDone') ? undefined : json['IsDone'],
-        'rQItemAssigned': !exists(json, 'RQItemAssigned') ? undefined : json['RQItemAssigned'],
-        'compName': !exists(json, 'CompName') ? undefined : json['CompName'],
-        'compDuration': !exists(json, 'CompDuration') ? undefined : json['CompDuration'],
-        'startFrame': !exists(json, 'StartFrame') ? undefined : json['StartFrame'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
+        'project': !exists(json, 'project') ? undefined : json['project'],
+        'path': !exists(json, 'path') ? undefined : json['path'],
+        'frame': !exists(json, 'frame') ? undefined : json['frame'],
+        'parentId': !exists(json, 'parentId') ? undefined : json['parentId'],
+        'isDone': !exists(json, 'isDone') ? undefined : json['isDone'],
+        'rQItemAssigned': !exists(json, 'rQItemAssigned') ? undefined : json['rQItemAssigned'],
+        'compName': !exists(json, 'compName') ? undefined : json['compName'],
+        'compDuration': !exists(json, 'compDuration') ? undefined : json['compDuration'],
+        'startFrame': !exists(json, 'startFrame') ? undefined : json['startFrame'],
     };
 }
 
@@ -113,16 +113,16 @@ export function JobToJSON(value?: Job | null): any {
     }
     return {
         
-        'Id': value.id,
-        'Project': value.project,
-        'Path': value.path,
-        'Frame': value.frame,
-        'ParentId': value.parentId,
-        'IsDone': value.isDone,
-        'RQItemAssigned': value.rQItemAssigned,
-        'CompName': value.compName,
-        'CompDuration': value.compDuration,
-        'StartFrame': value.startFrame,
+        'id': value.id,
+        'project': value.project,
+        'path': value.path,
+        'frame': value.frame,
+        'parentId': value.parentId,
+        'isDone': value.isDone,
+        'rQItemAssigned': value.rQItemAssigned,
+        'compName': value.compName,
+        'compDuration': value.compDuration,
+        'startFrame': value.startFrame,
     };
 }
 

@@ -66,10 +66,10 @@ export function PreRenderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'type': !exists(json, 'Type') ? undefined : json['Type'],
-        'state': !exists(json, 'State') ? undefined : PreRenderStateFromJSON(json['State']),
-        'progress': !exists(json, 'Progress') ? undefined : json['Progress'],
-        'settings': !exists(json, 'Settings') ? undefined : JsonElementFromJSON(json['Settings']),
+        'type': !exists(json, 'type') ? undefined : json['type'],
+        'state': !exists(json, 'state') ? undefined : PreRenderStateFromJSON(json['state']),
+        'progress': !exists(json, 'progress') ? undefined : json['progress'],
+        'settings': !exists(json, 'settings') ? undefined : JsonElementFromJSON(json['settings']),
     };
 }
 
@@ -82,10 +82,10 @@ export function PreRenderToJSON(value?: PreRender | null): any {
     }
     return {
         
-        'Type': value.type,
-        'State': PreRenderStateToJSON(value.state),
-        'Progress': value.progress,
-        'Settings': JsonElementToJSON(value.settings),
+        'type': value.type,
+        'state': PreRenderStateToJSON(value.state),
+        'progress': value.progress,
+        'settings': JsonElementToJSON(value.settings),
     };
 }
 
