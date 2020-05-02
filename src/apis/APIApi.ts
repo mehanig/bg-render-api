@@ -63,6 +63,11 @@ export interface KillAppPostRequest {
     xBGRMAXVersion?: string;
 }
 
+export interface PauseRequest {
+    xBGRMAXVersion?: string;
+    body?: string;
+}
+
 export interface RemoveQueueItemsRequest {
     xBGRMAXVersion?: string;
     renderQueueItemRemovePayload?: RenderQueueItemRemovePayload;
@@ -91,7 +96,7 @@ export interface SetMirrorServiceConfigRequest {
 /**
  * no description
  */
-export class APIApi extends runtime.BaseAPI {
+export class ApiApi extends runtime.BaseAPI {
 
     /**
      */
@@ -284,6 +289,36 @@ export class APIApi extends runtime.BaseAPI {
      */
     async killAppPost(requestParameters: KillAppPostRequest): Promise<void> {
         await this.killAppPostRaw(requestParameters);
+    }
+
+    /**
+     */
+    async pauseRaw(requestParameters: PauseRequest): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
+        const response = await this.request({
+            path: `/api/pause`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.body as any,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async pause(requestParameters: PauseRequest): Promise<void> {
+        await this.pauseRaw(requestParameters);
     }
 
     /**
