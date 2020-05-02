@@ -7,6 +7,7 @@ export * from './JsonElement';
 export * from './JsonValueKind';
 export * from './MirrorService';
 export * from './PauseOperation';
+export * from './PauseOperationPayload';
 export * from './PauseProcessControllable';
 export * from './PauseProcessState';
 export * from './PauseState';

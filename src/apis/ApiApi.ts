@@ -27,6 +27,9 @@ import {
     MirrorService,
     MirrorServiceFromJSON,
     MirrorServiceToJSON,
+    PauseOperationPayload,
+    PauseOperationPayloadFromJSON,
+    PauseOperationPayloadToJSON,
     RenderQueueItemRemovePayload,
     RenderQueueItemRemovePayloadFromJSON,
     RenderQueueItemRemovePayloadToJSON,
@@ -65,7 +68,7 @@ export interface KillAppPostRequest {
 
 export interface PauseRequest {
     xBGRMAXVersion?: string;
-    body?: string;
+    pauseOperationPayload?: PauseOperationPayload;
 }
 
 export interface RemoveQueueItemsRequest {
@@ -309,7 +312,7 @@ export class ApiApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.body as any,
+            body: PauseOperationPayloadToJSON(requestParameters.pauseOperationPayload),
         });
 
         return new runtime.VoidApiResponse(response);
