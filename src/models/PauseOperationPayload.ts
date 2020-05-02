@@ -31,7 +31,7 @@ export interface PauseOperationPayload {
      * @type {PauseOperation}
      * @memberof PauseOperationPayload
      */
-    pauseOperationPayload?: PauseOperation;
+    pauseOperation?: PauseOperation;
 }
 
 export function PauseOperationPayloadFromJSON(json: any): PauseOperationPayload {
@@ -44,7 +44,7 @@ export function PauseOperationPayloadFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'pauseOperationPayload': !exists(json, 'pauseOperationPayload') ? undefined : PauseOperationFromJSON(json['pauseOperationPayload']),
+        'pauseOperation': !exists(json, 'pauseOperation') ? undefined : PauseOperationFromJSON(json['pauseOperation']),
     };
 }
 
@@ -57,7 +57,7 @@ export function PauseOperationPayloadToJSON(value?: PauseOperationPayload | null
     }
     return {
         
-        'pauseOperationPayload': PauseOperationToJSON(value.pauseOperationPayload),
+        'pauseOperation': PauseOperationToJSON(value.pauseOperation),
     };
 }
 
