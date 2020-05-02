@@ -1,6 +1,6 @@
 {
   "name": "bg-render-api",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "OpenAPI client for bg-render-api",
   "author": "OpenAPI-Generator",
   "main": "./dist/index.js",
