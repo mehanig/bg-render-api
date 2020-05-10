@@ -71,6 +71,10 @@ export interface PauseRequest {
     pauseOperationPayload?: PauseOperationPayload;
 }
 
+export interface PlaySoundRequest {
+    xBGRMAXVersion?: string;
+}
+
 export interface RemoveQueueItemsRequest {
     xBGRMAXVersion?: string;
     renderQueueItemRemovePayload?: RenderQueueItemRemovePayload;
@@ -322,6 +326,33 @@ export class ApiApi extends runtime.BaseAPI {
      */
     async pause(requestParameters: PauseRequest): Promise<void> {
         await this.pauseRaw(requestParameters);
+    }
+
+    /**
+     */
+    async playSoundRaw(requestParameters: PlaySoundRequest): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
+        const response = await this.request({
+            path: `/api/playSound`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async playSound(requestParameters: PlaySoundRequest): Promise<void> {
+        await this.playSoundRaw(requestParameters);
     }
 
     /**
