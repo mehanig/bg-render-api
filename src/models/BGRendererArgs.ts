@@ -101,6 +101,12 @@ export interface BGRendererArgs {
      * @type {string}
      * @memberof BGRendererArgs
      */
+    playsound?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BGRendererArgs
+     */
     project: string;
 }
 
@@ -125,6 +131,7 @@ export function BGRendererArgsFromJSONTyped(json: any, ignoreDiscriminator: bool
         'maxthreads': json['maxthreads'],
         'postrenders': ((json['postrenders'] as Array<any>).map(PostRenderFromJSON)),
         'prerenders': !exists(json, 'prerenders') ? undefined : (json['prerenders'] === null ? null : (json['prerenders'] as Array<any>).map(PreRenderFromJSON)),
+        'playsound': !exists(json, 'playsound') ? undefined : json['playsound'],
         'project': json['project'],
     };
 }
@@ -149,6 +156,7 @@ export function BGRendererArgsToJSON(value?: BGRendererArgs | null): any {
         'maxthreads': value.maxthreads,
         'postrenders': ((value.postrenders as Array<any>).map(PostRenderToJSON)),
         'prerenders': value.prerenders === undefined ? undefined : (value.prerenders === null ? null : (value.prerenders as Array<any>).map(PreRenderToJSON)),
+        'playsound': value.playsound,
         'project': value.project,
     };
 }
