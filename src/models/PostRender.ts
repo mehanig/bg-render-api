@@ -14,10 +14,6 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    JsonElement,
-    JsonElementFromJSON,
-    JsonElementFromJSONTyped,
-    JsonElementToJSON,
     PostRenderState,
     PostRenderStateFromJSON,
     PostRenderStateFromJSONTyped,
@@ -56,10 +52,10 @@ export interface PostRender {
     args?: Array<string> | null;
     /**
      * 
-     * @type {JsonElement}
+     * @type {object}
      * @memberof PostRender
      */
-    settings?: JsonElement;
+    settings?: object;
 }
 
 export function PostRenderFromJSON(json: any): PostRender {
@@ -76,7 +72,7 @@ export function PostRenderFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'state': !exists(json, 'state') ? undefined : PostRenderStateFromJSON(json['state']),
         'progress': !exists(json, 'progress') ? undefined : json['progress'],
         'args': !exists(json, 'args') ? undefined : json['args'],
-        'settings': !exists(json, 'settings') ? undefined : JsonElementFromJSON(json['settings']),
+        'settings': !exists(json, 'settings') ? undefined : json['settings'],
     };
 }
 
@@ -93,7 +89,7 @@ export function PostRenderToJSON(value?: PostRender | null): any {
         'state': PostRenderStateToJSON(value.state),
         'progress': value.progress,
         'args': value.args,
-        'settings': JsonElementToJSON(value.settings),
+        'settings': value.settings,
     };
 }
 

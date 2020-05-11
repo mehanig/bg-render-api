@@ -14,10 +14,6 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    JsonElement,
-    JsonElementFromJSON,
-    JsonElementFromJSONTyped,
-    JsonElementToJSON,
     PreRenderState,
     PreRenderStateFromJSON,
     PreRenderStateFromJSONTyped,
@@ -50,10 +46,10 @@ export interface PreRender {
     progress?: string | null;
     /**
      * 
-     * @type {JsonElement}
+     * @type {object}
      * @memberof PreRender
      */
-    settings?: JsonElement;
+    settings?: object;
 }
 
 export function PreRenderFromJSON(json: any): PreRender {
@@ -69,7 +65,7 @@ export function PreRenderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'type': !exists(json, 'type') ? undefined : json['type'],
         'state': !exists(json, 'state') ? undefined : PreRenderStateFromJSON(json['state']),
         'progress': !exists(json, 'progress') ? undefined : json['progress'],
-        'settings': !exists(json, 'settings') ? undefined : JsonElementFromJSON(json['settings']),
+        'settings': !exists(json, 'settings') ? undefined : json['settings'],
     };
 }
 
@@ -85,7 +81,7 @@ export function PreRenderToJSON(value?: PreRender | null): any {
         'type': value.type,
         'state': PreRenderStateToJSON(value.state),
         'progress': value.progress,
-        'settings': JsonElementToJSON(value.settings),
+        'settings': value.settings,
     };
 }
 
