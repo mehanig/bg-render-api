@@ -24,6 +24,9 @@ import {
     CPUStats,
     CPUStatsFromJSON,
     CPUStatsToJSON,
+    FfmpegSettings,
+    FfmpegSettingsFromJSON,
+    FfmpegSettingsToJSON,
     MirrorService,
     MirrorServiceFromJSON,
     MirrorServiceToJSON,
@@ -39,6 +42,10 @@ import {
 } from '../models';
 
 export interface AddThreadRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface GetFfmpegSettingsRequest {
     xBGRMAXVersion?: string;
 }
 
@@ -130,6 +137,34 @@ export class ApiApi extends runtime.BaseAPI {
      */
     async addThread(requestParameters: AddThreadRequest): Promise<void> {
         await this.addThreadRaw(requestParameters);
+    }
+
+    /**
+     */
+    async getFfmpegSettingsRaw(requestParameters: GetFfmpegSettingsRequest): Promise<runtime.ApiResponse<FfmpegSettings>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
+        const response = await this.request({
+            path: `/api/getFfmpegSettings`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FfmpegSettingsFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getFfmpegSettings(requestParameters: GetFfmpegSettingsRequest): Promise<FfmpegSettings> {
+        const response = await this.getFfmpegSettingsRaw(requestParameters);
+        return await response.value();
     }
 
     /**

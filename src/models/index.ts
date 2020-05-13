@@ -2,6 +2,7 @@ export * from './AeRendererState';
 export * from './BGRendererArgs';
 export * from './BGRendererInput';
 export * from './CPUStats';
+export * from './FfmpegSettings';
 export * from './Job';
 export * from './MirrorService';
 export * from './PauseOperation';
