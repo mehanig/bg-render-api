@@ -77,6 +77,12 @@ export interface RenderQueueItem {
      * @type {string}
      * @memberof RenderQueueItem
      */
+    resultPath?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RenderQueueItem
+     */
     compName?: string | null;
     /**
      * 
@@ -145,6 +151,7 @@ export function RenderQueueItemFromJSONTyped(json: any, ignoreDiscriminator: boo
         'hasError': !exists(json, 'hasError') ? undefined : json['hasError'],
         'project': !exists(json, 'project') ? undefined : json['project'],
         'path': !exists(json, 'path') ? undefined : json['path'],
+        'resultPath': !exists(json, 'resultPath') ? undefined : json['resultPath'],
         'compName': !exists(json, 'compName') ? undefined : json['compName'],
         'compDuration': !exists(json, 'compDuration') ? undefined : json['compDuration'],
         'startFrame': !exists(json, 'startFrame') ? undefined : json['startFrame'],
@@ -173,6 +180,7 @@ export function RenderQueueItemToJSON(value?: RenderQueueItem | null): any {
         'hasError': value.hasError,
         'project': value.project,
         'path': value.path,
+        'resultPath': value.resultPath,
         'compName': value.compName,
         'compDuration': value.compDuration,
         'startFrame': value.startFrame,
