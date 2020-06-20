@@ -30,6 +30,9 @@ import {
     MirrorService,
     MirrorServiceFromJSON,
     MirrorServiceToJSON,
+    NetworkRender,
+    NetworkRenderFromJSON,
+    NetworkRenderToJSON,
     PauseOperationPayload,
     PauseOperationPayloadFromJSON,
     PauseOperationPayloadToJSON,
@@ -39,9 +42,16 @@ import {
     ServiceKey,
     ServiceKeyFromJSON,
     ServiceKeyToJSON,
+    WsBroadcasterMessage,
+    WsBroadcasterMessageFromJSON,
+    WsBroadcasterMessageToJSON,
 } from '../models';
 
 export interface AddThreadRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface CreateRenderGroupRequest {
     xBGRMAXVersion?: string;
 }
 
@@ -57,7 +67,15 @@ export interface GetModelRequest {
     xBGRMAXVersion?: string;
 }
 
+export interface GetNetworkRenderConfigRequest {
+    xBGRMAXVersion?: string;
+}
+
 export interface GetServiceKeyRequest {
+    xBGRMAXVersion?: string;
+}
+
+export interface GetWsBroadcasterMessageRequest {
     xBGRMAXVersion?: string;
 }
 
@@ -107,6 +125,11 @@ export interface SetMirrorServiceConfigRequest {
     mirrorService?: MirrorService;
 }
 
+export interface SetNetworkRenderConfigRequest {
+    xBGRMAXVersion?: string;
+    networkRender?: NetworkRender;
+}
+
 /**
  * no description
  */
@@ -137,6 +160,33 @@ export class ApiApi extends runtime.BaseAPI {
      */
     async addThread(requestParameters: AddThreadRequest): Promise<void> {
         await this.addThreadRaw(requestParameters);
+    }
+
+    /**
+     */
+    async createRenderGroupRaw(requestParameters: CreateRenderGroupRequest): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
+        const response = await this.request({
+            path: `/api/createRenderGroup`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async createRenderGroup(requestParameters: CreateRenderGroupRequest): Promise<void> {
+        await this.createRenderGroupRaw(requestParameters);
     }
 
     /**
@@ -225,6 +275,34 @@ export class ApiApi extends runtime.BaseAPI {
 
     /**
      */
+    async getNetworkRenderConfigRaw(requestParameters: GetNetworkRenderConfigRequest): Promise<runtime.ApiResponse<NetworkRender>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
+        const response = await this.request({
+            path: `/api/networkRenderConfig`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NetworkRenderFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getNetworkRenderConfig(requestParameters: GetNetworkRenderConfigRequest): Promise<NetworkRender> {
+        const response = await this.getNetworkRenderConfigRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     */
     async getServiceKeyRaw(requestParameters: GetServiceKeyRequest): Promise<runtime.ApiResponse<ServiceKey>> {
         const queryParameters: runtime.HTTPQuery = {};
 
@@ -248,6 +326,34 @@ export class ApiApi extends runtime.BaseAPI {
      */
     async getServiceKey(requestParameters: GetServiceKeyRequest): Promise<ServiceKey> {
         const response = await this.getServiceKeyRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getWsBroadcasterMessageRaw(requestParameters: GetWsBroadcasterMessageRequest): Promise<runtime.ApiResponse<WsBroadcasterMessage>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
+        const response = await this.request({
+            path: `/api/wsBroadcasterMessage`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WsBroadcasterMessageFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getWsBroadcasterMessage(requestParameters: GetWsBroadcasterMessageRequest): Promise<WsBroadcasterMessage> {
+        const response = await this.getWsBroadcasterMessageRaw(requestParameters);
         return await response.value();
     }
 
@@ -538,6 +644,36 @@ export class ApiApi extends runtime.BaseAPI {
      */
     async setMirrorServiceConfig(requestParameters: SetMirrorServiceConfigRequest): Promise<void> {
         await this.setMirrorServiceConfigRaw(requestParameters);
+    }
+
+    /**
+     */
+    async setNetworkRenderConfigRaw(requestParameters: SetNetworkRenderConfigRequest): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
+        const response = await this.request({
+            path: `/api/networkRenderConfig`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: NetworkRenderToJSON(requestParameters.networkRender),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async setNetworkRenderConfig(requestParameters: SetNetworkRenderConfigRequest): Promise<void> {
+        await this.setNetworkRenderConfigRaw(requestParameters);
     }
 
 }

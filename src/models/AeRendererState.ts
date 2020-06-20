@@ -49,6 +49,12 @@ export interface AeRendererState {
      * @type {string}
      * @memberof AeRendererState
      */
+    machineId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AeRendererState
+     */
     settings?: string | null;
     /**
      * 
@@ -111,6 +117,7 @@ export function AeRendererStateFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'machineId': !exists(json, 'machineId') ? undefined : json['machineId'],
         'settings': !exists(json, 'settings') ? undefined : json['settings'],
         'errorMessage': !exists(json, 'errorMessage') ? undefined : json['errorMessage'],
         'isDone': !exists(json, 'isDone') ? undefined : json['isDone'],
@@ -133,6 +140,7 @@ export function AeRendererStateToJSON(value?: AeRendererState | null): any {
     return {
         
         'id': value.id,
+        'machineId': value.machineId,
         'settings': value.settings,
         'errorMessage': value.errorMessage,
         'isDone': value.isDone,
