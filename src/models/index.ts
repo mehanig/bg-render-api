@@ -1,4 +1,5 @@
 export * from './AeRendererState';
+export * from './ApiOperationResult';
 export * from './BGRendererArgs';
 export * from './BGRendererInput';
 export * from './CPUStats';

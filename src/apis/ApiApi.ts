@@ -18,6 +18,9 @@ import {
     AeRendererState,
     AeRendererStateFromJSON,
     AeRendererStateToJSON,
+    ApiOperationResult,
+    ApiOperationResultFromJSON,
+    ApiOperationResultToJSON,
     BGRendererInput,
     BGRendererInputFromJSON,
     BGRendererInputToJSON,
@@ -648,7 +651,7 @@ export class ApiApi extends runtime.BaseAPI {
 
     /**
      */
-    async setNetworkRenderConfigRaw(requestParameters: SetNetworkRenderConfigRequest): Promise<runtime.ApiResponse<void>> {
+    async setNetworkRenderConfigRaw(requestParameters: SetNetworkRenderConfigRequest): Promise<runtime.ApiResponse<ApiOperationResult>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -667,13 +670,14 @@ export class ApiApi extends runtime.BaseAPI {
             body: NetworkRenderToJSON(requestParameters.networkRender),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiOperationResultFromJSON(jsonValue));
     }
 
     /**
      */
-    async setNetworkRenderConfig(requestParameters: SetNetworkRenderConfigRequest): Promise<void> {
-        await this.setNetworkRenderConfigRaw(requestParameters);
+    async setNetworkRenderConfig(requestParameters: SetNetworkRenderConfigRequest): Promise<ApiOperationResult> {
+        const response = await this.setNetworkRenderConfigRaw(requestParameters);
+        return await response.value();
     }
 
 }
