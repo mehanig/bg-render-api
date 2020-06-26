@@ -36,6 +36,9 @@ import {
     NetworkRender,
     NetworkRenderFromJSON,
     NetworkRenderToJSON,
+    NetworkRenderJoinGroupOperation,
+    NetworkRenderJoinGroupOperationFromJSON,
+    NetworkRenderJoinGroupOperationToJSON,
     PauseOperationPayload,
     PauseOperationPayloadFromJSON,
     PauseOperationPayloadToJSON,
@@ -84,6 +87,11 @@ export interface GetWsBroadcasterMessageRequest {
 
 export interface GreetRequest {
     xBGRMAXVersion?: string;
+}
+
+export interface JoinRenderGroupRequest {
+    xBGRMAXVersion?: string;
+    networkRenderJoinGroupOperation?: NetworkRenderJoinGroupOperation;
 }
 
 export interface KillAppRequest {
@@ -385,6 +393,37 @@ export class ApiApi extends runtime.BaseAPI {
      */
     async greet(requestParameters: GreetRequest): Promise<string> {
         const response = await this.greetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     */
+    async joinRenderGroupRaw(requestParameters: JoinRenderGroupRequest): Promise<runtime.ApiResponse<ApiOperationResult>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xBGRMAXVersion !== undefined && requestParameters.xBGRMAXVersion !== null) {
+            headerParameters['X-BGRMAX-Version'] = String(requestParameters.xBGRMAXVersion);
+        }
+
+        const response = await this.request({
+            path: `/api/joinRenderGroup`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: NetworkRenderJoinGroupOperationToJSON(requestParameters.networkRenderJoinGroupOperation),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ApiOperationResultFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async joinRenderGroup(requestParameters: JoinRenderGroupRequest): Promise<ApiOperationResult> {
+        const response = await this.joinRenderGroupRaw(requestParameters);
         return await response.value();
     }
 

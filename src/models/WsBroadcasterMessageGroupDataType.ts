@@ -14,10 +14,10 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    WsBroadcasterMessageMachineDataType,
-    WsBroadcasterMessageMachineDataTypeFromJSON,
-    WsBroadcasterMessageMachineDataTypeFromJSONTyped,
-    WsBroadcasterMessageMachineDataTypeToJSON,
+    RenderMachineDataType,
+    RenderMachineDataTypeFromJSON,
+    RenderMachineDataTypeFromJSONTyped,
+    RenderMachineDataTypeToJSON,
 } from './';
 
 /**
@@ -34,16 +34,16 @@ export interface WsBroadcasterMessageGroupDataType {
     groupId?: string | null;
     /**
      * 
-     * @type {WsBroadcasterMessageMachineDataType}
+     * @type {RenderMachineDataType}
      * @memberof WsBroadcasterMessageGroupDataType
      */
-    owner?: WsBroadcasterMessageMachineDataType;
+    owner?: RenderMachineDataType;
     /**
      * 
-     * @type {Array<WsBroadcasterMessageMachineDataType>}
+     * @type {Array<RenderMachineDataType>}
      * @memberof WsBroadcasterMessageGroupDataType
      */
-    joined?: Array<WsBroadcasterMessageMachineDataType> | null;
+    joined?: Array<RenderMachineDataType> | null;
 }
 
 export function WsBroadcasterMessageGroupDataTypeFromJSON(json: any): WsBroadcasterMessageGroupDataType {
@@ -57,8 +57,8 @@ export function WsBroadcasterMessageGroupDataTypeFromJSONTyped(json: any, ignore
     return {
         
         'groupId': !exists(json, 'groupId') ? undefined : json['groupId'],
-        'owner': !exists(json, 'owner') ? undefined : WsBroadcasterMessageMachineDataTypeFromJSON(json['owner']),
-        'joined': !exists(json, 'joined') ? undefined : (json['joined'] === null ? null : (json['joined'] as Array<any>).map(WsBroadcasterMessageMachineDataTypeFromJSON)),
+        'owner': !exists(json, 'owner') ? undefined : RenderMachineDataTypeFromJSON(json['owner']),
+        'joined': !exists(json, 'joined') ? undefined : (json['joined'] === null ? null : (json['joined'] as Array<any>).map(RenderMachineDataTypeFromJSON)),
     };
 }
 
@@ -72,8 +72,8 @@ export function WsBroadcasterMessageGroupDataTypeToJSON(value?: WsBroadcasterMes
     return {
         
         'groupId': value.groupId,
-        'owner': WsBroadcasterMessageMachineDataTypeToJSON(value.owner),
-        'joined': value.joined === undefined ? undefined : (value.joined === null ? null : (value.joined as Array<any>).map(WsBroadcasterMessageMachineDataTypeToJSON)),
+        'owner': RenderMachineDataTypeToJSON(value.owner),
+        'joined': value.joined === undefined ? undefined : (value.joined === null ? null : (value.joined as Array<any>).map(RenderMachineDataTypeToJSON)),
     };
 }
 
