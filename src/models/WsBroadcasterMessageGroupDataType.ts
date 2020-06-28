@@ -44,6 +44,12 @@ export interface WsBroadcasterMessageGroupDataType {
      * @memberof WsBroadcasterMessageGroupDataType
      */
     joined?: Array<RenderMachineDataType> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof WsBroadcasterMessageGroupDataType
+     */
+    joinUrl?: string | null;
 }
 
 export function WsBroadcasterMessageGroupDataTypeFromJSON(json: any): WsBroadcasterMessageGroupDataType {
@@ -59,6 +65,7 @@ export function WsBroadcasterMessageGroupDataTypeFromJSONTyped(json: any, ignore
         'groupId': !exists(json, 'groupId') ? undefined : json['groupId'],
         'owner': !exists(json, 'owner') ? undefined : RenderMachineDataTypeFromJSON(json['owner']),
         'joined': !exists(json, 'joined') ? undefined : (json['joined'] === null ? null : (json['joined'] as Array<any>).map(RenderMachineDataTypeFromJSON)),
+        'joinUrl': !exists(json, 'joinUrl') ? undefined : json['joinUrl'],
     };
 }
 
@@ -74,6 +81,7 @@ export function WsBroadcasterMessageGroupDataTypeToJSON(value?: WsBroadcasterMes
         'groupId': value.groupId,
         'owner': RenderMachineDataTypeToJSON(value.owner),
         'joined': value.joined === undefined ? undefined : (value.joined === null ? null : (value.joined as Array<any>).map(RenderMachineDataTypeToJSON)),
+        'joinUrl': value.joinUrl,
     };
 }
 
