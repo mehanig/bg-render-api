@@ -43,7 +43,7 @@ export interface WsBroadcasterMessageGroupDataType {
      * @type {Array<RenderMachineDataType>}
      * @memberof WsBroadcasterMessageGroupDataType
      */
-    joined?: Array<RenderMachineDataType> | null;
+    joinedMachines?: Array<RenderMachineDataType> | null;
     /**
      * 
      * @type {string}
@@ -64,7 +64,7 @@ export function WsBroadcasterMessageGroupDataTypeFromJSONTyped(json: any, ignore
         
         'groupId': !exists(json, 'groupId') ? undefined : json['groupId'],
         'owner': !exists(json, 'owner') ? undefined : RenderMachineDataTypeFromJSON(json['owner']),
-        'joined': !exists(json, 'joined') ? undefined : (json['joined'] === null ? null : (json['joined'] as Array<any>).map(RenderMachineDataTypeFromJSON)),
+        'joinedMachines': !exists(json, 'joinedMachines') ? undefined : (json['joinedMachines'] === null ? null : (json['joinedMachines'] as Array<any>).map(RenderMachineDataTypeFromJSON)),
         'joinUrl': !exists(json, 'joinUrl') ? undefined : json['joinUrl'],
     };
 }
@@ -80,7 +80,7 @@ export function WsBroadcasterMessageGroupDataTypeToJSON(value?: WsBroadcasterMes
         
         'groupId': value.groupId,
         'owner': RenderMachineDataTypeToJSON(value.owner),
-        'joined': value.joined === undefined ? undefined : (value.joined === null ? null : (value.joined as Array<any>).map(RenderMachineDataTypeToJSON)),
+        'joinedMachines': value.joinedMachines === undefined ? undefined : (value.joinedMachines === null ? null : (value.joinedMachines as Array<any>).map(RenderMachineDataTypeToJSON)),
         'joinUrl': value.joinUrl,
     };
 }
